@@ -10,6 +10,7 @@
 from PyQt5 import QtCore,QtGui
 from PyQt5 import QtWidgets 
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtCore import QPoint, QRect, QSize, Qt
 
 
 class Ui_MainWindow(QWidget):
@@ -299,7 +300,7 @@ class Ui_MainWindow(QWidget):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+        
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
