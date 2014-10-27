@@ -13,6 +13,7 @@ from LabelUI import LabelUI, LabelUIMiddleLine
 from ui import Ui_MainWindow
 from Video import Video
 import cv2
+import pickle
 class jaabaGUI(QMainWindow):
     """ controller for the blob labeling GUI"""
 
@@ -75,8 +76,10 @@ class jaabaGUI(QMainWindow):
         #callbacks
         self.ui.actionQuit.triggered.connect(self.quit)
         self.ui.actionLoad_Project.triggered.connect(self.loadVideo)
+        self.ui.actionImport_Labels.triggered.connect(self.loadLabels)
         #self.ui.buttonPlay.clicked[bool].connect(self.setToggleText)
         self.ui.buttonPlay.clicked.connect(self.play)
+        self.ui.actionSave.triggered.connect(self.saveLabels)
         ## print self.ui.graphicsView.sizeHint()
 
         #behavior Button
@@ -245,6 +248,7 @@ class jaabaGUI(QMainWindow):
         # init label related ui
         self.loadLabelUI()
 
+
     def debugLoadVideo(self):
 
         self.videoFilename = self.debugVideoPath
@@ -295,6 +299,17 @@ class jaabaGUI(QMainWindow):
             self.mediaPlayer2.pause()
         else: 
             self.mediaPlayer2.play()
+
+    def loadLabels(self):
+
+        self.writeLog("Loading labels from file...")
+        self.labelFilename = QFileDialog.getOpenFileName(self, 'Open File', '.')[0]
+        self.labelUI.labelData = pickle.load(open(self.labelFilename,"rb"))
+        self.writeLog("Label loaded from file:" + self.labelFilename)
+
+    def saveLabels(self):
+        # Now it can only save to current file. Will add an poput window to choose path later
+        pickle.dump( self.labelUI.labelData, open( "newLabels.p", "wb" ) )
   
 
     def setPosition(self, position):
@@ -400,6 +415,8 @@ class jaabaGUI(QMainWindow):
             # start labeling
             self.labelUI.startLabel(self.ui.comboBox.currentIndex(),'',self.current_frame)
             self.writeLog('start labeling')
+
+
         else:
             # stop lableing
             self.labelUI.stopLabel()

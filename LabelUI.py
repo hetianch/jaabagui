@@ -29,9 +29,10 @@ class LabelUI(QGraphicsItem):
 		self.visiableWidth = 100
 
 		self.visiableHeight = 50
-		
 		# [ [10, 200], [220, 400] ]
-		self.labelData = pickle.load(open("save.p","rb"))
+		self.labelData = dict.fromkeys(['t0','t1','names','labels'])
+		self.labelData['names']=[0]
+
 		self.colorMatch = {'multifly':Qt.red,'female':Qt.green ,'chase':Qt.blue,'multifly_none':Qt.gray,'female_none':Qt.gray,'chase_none':Qt.gray}
 		self.yMatch = {'multifly':0,'female':10 ,'chase':20,'multifly_none':0,'female_none':10 ,'chase_none':20}
 		self.comboLabelMatch={0:'multifly', 1:'female',2:'chase'}
@@ -50,6 +51,7 @@ class LabelUI(QGraphicsItem):
 
 		self.currentFrame = 0
 		self.currFly = 1
+		self.currColor = Qt.black
 
 	def setWidthPerFrame(self, num):
 		self.widthPerFrame = num
@@ -74,8 +76,12 @@ class LabelUI(QGraphicsItem):
 		self.currentFrame = currentFrame
 
 	def startLabel(self, labelIdx,postfix,currentframe):
+		self.isLabeling = True
 		#postfix= '_none' or ''
 		self.currentBehavior = self.comboLabelMatch[labelIdx]+postfix
+		color = self.colorMatch[self.comboLabelMatch[labelIdx]+postfix]
+		self.currColor=color
+
 
 		fly_to_add = self.currFly
 		labels = self.labelData
@@ -94,7 +100,7 @@ class LabelUI(QGraphicsItem):
 		self.labelData=labels
 
 		#print 'startLabel'
-		self.isLabeling = True
+		#self.isLabeling = True
 		# create a new labelNames
 
 		# create a new labelShape, [currentframe, currentframe+2]
@@ -157,6 +163,7 @@ class LabelUI(QGraphicsItem):
 			bouts= len(labels['labels'][fly_idx])
 			for i in xrange(bouts):
 				color = self.colorMatch[labels['labels'][fly_idx][i]]
+				self.currColor = color
 				yPos = self.yMatch[labels['labels'][fly_idx][i]]
 				painter.setBrush(QBrush(color))
 				pen=QPen(color)

@@ -80,9 +80,18 @@ class TargetView(QGraphicsItem):
 			if self.trajectory[i,3]==self.currentFly:
 				# draw bold triangle for current fly
 				pen.setWidth(3)
+				# give labeling color to current fly
+				if self.window.labelUI.isLabeling:
+					pen.setColor(self.window.labelUI.currColor)	
+				else:
+					pen.setColor(Qt.black)
 			else:
+				pen.setColor(Qt.black)
 				pen.setWidth(1)
-			#if self.window.labelUI.islabeling:
+			
+			
+
+
 
 
 			

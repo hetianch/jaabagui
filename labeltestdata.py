@@ -13,6 +13,8 @@ labels['labels'][0].append('female');
 labels['labels'][0].append('female_none');
 labels['labels'][0].append('chase');
 labels['labels'][0].append('chase_none');
+labels['labels'][0].append('multifly');
+labels['labels'][0].append('multifly_none');
 
 
 #add labels to fly 2
@@ -28,20 +30,24 @@ labels['labels'][1].append('chase_none');
 #add start and end frame to fly 1
 
 labels['t0']=[[]];
-labels['t0'][0].append(689);
-labels['t0'][0].append(693);
-labels['t0'][0].append(650);
-labels['t0'][0].append(730);
-labels['t0'][0].append(720);
-labels['t0'][0].append(760);
+labels['t0'][0].append(2);
+labels['t0'][0].append(45);
+labels['t0'][0].append(100);
+labels['t0'][0].append(190);
+labels['t0'][0].append(350);
+labels['t0'][0].append(500);
+labels['t0'][0].append(790);
+labels['t0'][0].append(900);
 
 labels['t1']=[[]];
-labels['t1'][0].append(692);
-labels['t1'][0].append(700);
-labels['t1'][0].append(710);
-labels['t1'][0].append(740);
-labels['t1'][0].append(755);
-labels['t1'][0].append(764);
+labels['t1'][0].append(40);
+labels['t1'][0].append(80);
+labels['t1'][0].append(150);
+labels['t1'][0].append(270);
+labels['t1'][0].append(450);
+labels['t1'][0].append(600);
+labels['t1'][0].append(850);
+labels['t1'][0].append(1020);
 
 
 #add start and end frame to fly 2
