@@ -159,7 +159,9 @@ class LabelUI(QGraphicsItem):
 				color = self.colorMatch[labels['labels'][fly_idx][i]]
 				yPos = self.yMatch[labels['labels'][fly_idx][i]]
 				painter.setBrush(QBrush(color))
-				painter.setPen(QPen(color))
+				pen=QPen(color)
+				pen.setWidth(1)
+				painter.setPen(pen)
 
 				widthRect= (labels['t1'][fly_idx][i]-labels['t0'][fly_idx][i]+1) * self.widthPerFrame
 				startPos= labels['t0'][fly_idx][i] * self.widthPerFrame

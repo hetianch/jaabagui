@@ -18,7 +18,7 @@ class TargetView(QGraphicsItem):
 	def __init__(self,parent=None):
 		super(TargetView, self).__init__()
 		self.setZValue(1)
-		self.trajectory= genfromtxt('data.csv',delimiter=',')
+		self.trajectory= genfromtxt('data3.csv',delimiter=',')
 
 		""" it's too damn ugly to write it here, for test purpose, use my previous .mat file for single fly info"""
 		mat_dict={}
@@ -31,6 +31,11 @@ class TargetView(QGraphicsItem):
 		self.isManualCalled= False
 		self.idx_to_draw= np.empty([0,0])
 		self.currentFly=1
+
+		self.window = None
+
+	def setWindowReference(self, window):
+		self.window = window
 
 	def setXYScale (self, oriWidth, oriHeight,newWidth,newHeight):
 		#self.oriWidth = oriWidth
@@ -54,6 +59,9 @@ class TargetView(QGraphicsItem):
 
 	
 	def paint (self, painter, option, widget):
+		
+		#set initial pen style
+		pen=QPen(Qt.black)
 
 
 		if (self.isManualCalled):
@@ -69,6 +77,14 @@ class TargetView(QGraphicsItem):
 			x = self.trajectory[i,1]
 			y = self.trajectory[i,2]
 
+			if self.trajectory[i,3]==self.currentFly:
+				# draw bold triangle for current fly
+				pen.setWidth(3)
+			else:
+				pen.setWidth(1)
+			#if self.window.labelUI.islabeling:
+
+
 			
 			# print 'currFrame',self.currFrame
 			# print 'data_to_draw', self.idx_to_draw
@@ -81,7 +97,7 @@ class TargetView(QGraphicsItem):
 				self.getPoint(x-50, y+50)
 			)
 			#print fly
-
+			painter.setPen(pen)
 			painter.drawPolyline(fly);
 
 

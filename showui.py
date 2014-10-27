@@ -64,7 +64,8 @@ class jaabaGUI(QMainWindow):
         #draw on video
         self.flyCanvas= TargetView()
         self.scene.addItem(self.flyCanvas)
-
+        #give reference to target view
+        self.flyCanvas.setWindowReference(self)
 
         #lineEdit signals:
         self.ui.lineEdit.returnPressed.connect(self.lineEditChanged)
@@ -152,6 +153,7 @@ class jaabaGUI(QMainWindow):
         self.labelScene.addItem(self.labelUIMiddleLine)
         self.labelUIMiddleLine.setPos(labelUIWidth/2,0)
        
+
 
         # self.labelUI.setPos(QPointF(-100,0))
         self.writeLog('Label UI loaded')
