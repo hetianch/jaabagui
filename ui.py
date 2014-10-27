@@ -26,6 +26,7 @@ class Ui_MainWindow(QWidget):
         self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
+
         self.graphLabels = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -34,6 +35,7 @@ class Ui_MainWindow(QWidget):
         self.graphLabels.setSizePolicy(sizePolicy)
         self.graphLabels.setMaximumSize(QtCore.QSize(1200, 31))
         self.graphLabels.setObjectName("graphLabels")
+        
         self.verticalLayout_3.addWidget(self.graphLabels)
         self.graphiScores = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
