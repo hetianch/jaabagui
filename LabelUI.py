@@ -30,8 +30,12 @@ class LabelUI(QGraphicsItem):
 
 		self.visiableHeight = 50
 		# [ [10, 200], [220, 400] ]
-		self.labelData = dict.fromkeys(['t0','t1','names','labels'])
-		self.labelData['names']=[0]
+		labelData= dict.fromkeys(['t0','t1','names','labels'])
+		labelData['names']=[0]
+		labelData['labels']=[[]]
+		labelData['t0']=[[]]
+		labelData['t1']=[[]]
+		self.labelData= labelData
 
 		self.colorMatch = {'multifly':Qt.red,'female':Qt.green ,'chase':Qt.blue,'multifly_none':Qt.gray,'female_none':Qt.gray,'chase_none':Qt.gray}
 		self.yMatch = {'multifly':0,'female':10 ,'chase':20,'multifly_none':0,'female_none':10 ,'chase_none':20}
@@ -87,7 +91,7 @@ class LabelUI(QGraphicsItem):
 		labels = self.labelData
 
 		if fly_to_add not in labels['names']: # has not been labeled 
-			labels['names'].append(currFly)
+			labels['names'].append(fly_to_add)
 			labels['labels'].append(list());
 			labels['t0'].append(list());
 			labels['t1'].append(list());

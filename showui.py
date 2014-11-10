@@ -100,11 +100,14 @@ class jaabaGUI(QMainWindow):
         self.currentFly=1
 
         #initialize flyInfo
-        self.setCurrentFly(self.currentFly)
+        #self.setCurrentFly(self.currentFly)
 
+        # register flyid changed callback
+        self.flyCanvas.onCurrentFlyIdChanged(self.currentFlyIdChangedCallback)
+        self.flyCanvas.setCurrentFlyId(self.currentFly)
 
-
-
+        # when double click on video, change fly id in target view
+        self.videoItem2.onDoubleClick(self.flyCanvas.setCurrentFlyIdByXY)
 
         ########################
         # DEBUG PART HERE!!!!! #
@@ -443,6 +446,11 @@ class jaabaGUI(QMainWindow):
         self.ui.flyInfo.setPlainText('FlyID:' + str(self.currentFly))
         self.flyCanvas.currentFly=fly
 
+    def currentFlyIdChangedCallback(self,fly):
+        print 'callback!!!!!';
+        self.currentFly = fly
+        self.ui.flyInfo.setPlainText('FlyID:' + str(self.currentFly))
+        #self.flyCanvas.currentFly=fly
         
 
 if __name__ == "__main__":
